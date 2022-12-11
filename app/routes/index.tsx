@@ -1,7 +1,9 @@
+import { Typography } from "@mui/material";
+
 export default function Index() {
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix</h1>
+    <div>
+      <Typography variant="h4">Welcome to Remix</Typography>
       <ul>
         <li>
           <a
@@ -9,7 +11,7 @@ export default function Index() {
             href="https://remix.run/tutorials/blog"
             rel="noreferrer"
           >
-            15m Quickstart Blog Tutorial
+            15m Quick start Blog Tutorial
           </a>
         </li>
         <li>

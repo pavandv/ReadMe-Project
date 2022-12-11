@@ -1,6 +1,5 @@
 import { PassThrough } from "stream";
 import type { EntryContext } from "@remix-run/node";
-import { Response } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import isbot from "isbot";
 import { renderToPipeableStream, renderToString } from "react-dom/server";
@@ -59,14 +58,14 @@ export default function handleRequest(
 
   const body = `<!DOCTYPE html>${markup}`;
 
+  responseHeaders.set("Content-Type", "text/html");
+
   return new Promise((resolve, reject) => {
     let didError = false;
 
     // const { pipe, abort } = renderToPipeableStream(<MuiRemixServer />, {
     //   [onReadyCallbackName]: () => {
     //     const body = new PassThrough();
-
-    responseHeaders.set("Content-Type", "text/html");
 
     resolve(
       new Response(body, {

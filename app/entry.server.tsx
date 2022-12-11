@@ -1,18 +1,11 @@
-import { PassThrough } from "stream";
 import type { EntryContext } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
-import isbot from "isbot";
-import { renderToPipeableStream, renderToString } from "react-dom/server";
+import { renderToString } from "react-dom/server";
 import createEmotionServer from "@emotion/server/create-instance";
 import { CacheProvider } from "@emotion/react";
-import CssBaseline from "@mui/material/CssBaseline";
-import { constructStyleTagsFromChunks } from "@emotion/server";
 
 import { createEmotionCache } from "./lib";
 import { RMPThemeProvider } from "./providers/ThemeProvider";
-import { AppProvider } from "./providers";
-
-const ABORT_DELAY = 5000;
 
 export default function handleRequest(
   request: Request,
@@ -20,10 +13,6 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  const onReadyCallbackName = isbot(request.headers.get("user-agent"))
-    ? "onAllReady"
-    : "onShellReady";
-
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
 
@@ -60,32 +49,8 @@ export default function handleRequest(
 
   responseHeaders.set("Content-Type", "text/html");
 
-  return new Promise((resolve, reject) => {
-    let didError = false;
-
-    // const { pipe, abort } = renderToPipeableStream(<MuiRemixServer />, {
-    //   [onReadyCallbackName]: () => {
-    //     const body = new PassThrough();
-
-    resolve(
-      new Response(body, {
-        headers: responseHeaders,
-        status: didError ? 500 : responseStatusCode,
-      })
-    );
-
-    //     pipe(body);
-    //   },
-    //   onShellError(err: unknown) {
-    //     reject(err);
-    //   },
-    //   onError(error: unknown) {
-    //     didError = true;
-
-    //     console.error(error);
-    //   },
-    // });
-
-    // setTimeout(abort, ABORT_DELAY);
+  return new Response(body, {
+    headers: responseHeaders,
+    status: responseStatusCode,
   });
 }

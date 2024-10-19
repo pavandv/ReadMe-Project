@@ -1,6 +1,5 @@
 import { List, ListItem, Stack, styled, Typography } from "@mui/material";
-import type { PropsWithChildren } from "react";
-import { Children } from "react";
+import type { PropsWithChildren, ReactNode } from "react";
 
 interface Props {
   title?: string;
@@ -14,7 +13,7 @@ export const HGroup = ({
 }: PropsWithChildren<Props>) => {
   return (
     <Stack marginTop={marginTop ?? 5} direction="row">
-      <Stack spacing={3}>
+      <Stack spacing={2}>
         {title && (
           <Typography fontWeight="bold" variant="h6">
             {title}
@@ -29,7 +28,7 @@ export const HGroup = ({
 interface TitleWithSubheadingProps {
   title: string;
   subheading: string;
-  caption?: string;
+  caption?: string | ReactNode;
 }
 
 export const TitleWithSubheading = ({
@@ -61,22 +60,22 @@ export const TitleWithSubheading = ({
 };
 
 interface TitleWithCaptionProps {
-  isTitlePrimary?: boolean;
+  enablePrimaryTitle?: boolean;
   title: string;
   caption?: string;
 }
 
 export const TitleWithCaption = ({
-  isTitlePrimary,
+  enablePrimaryTitle,
   title,
   caption,
 }: TitleWithCaptionProps) => {
   return (
     <Stack>
       <Typography
-        color={isTitlePrimary ? "primary" : "inherit"}
-        fontWeight={isTitlePrimary ? "bold" : 800}
-        variant={isTitlePrimary ? "h6" : "subtitle2"}
+        color={enablePrimaryTitle ? "primary" : "inherit"}
+        fontWeight={enablePrimaryTitle ? "bold" : 800}
+        variant={enablePrimaryTitle ? "h6" : "subtitle2"}
       >
         {title}
       </Typography>

@@ -29,7 +29,7 @@ const Aside = styled("aside")({
 
 const Section = styled("section")({
   width: "70%",
-  paddingLeft: "3%",
+  paddingLeft: "7%",
 });
 
 const Header = styled(Stack)(({ theme }) => ({
@@ -39,12 +39,12 @@ const Header = styled(Stack)(({ theme }) => ({
 export default function Resume() {
   const theme = useTheme();
   return (
-    <Box height="100%" marginY={7} marginX={7}>
+    <Box height="100%" marginY={0} marginX={0}>
       <Header>
         <Aside sx={{ display: "flex", alignItems: "flex-end" }}>
           <Stack spacing={1}>
-            <Box>
-              <Stack alignItems="center" spacing={0.5} direction="row">
+            <Stack spacing={0.5}>
+              {/* <Stack alignItems="center" spacing={0.5} direction="row">
                 <Icon color="action" fontSize="small">
                   language
                 </Icon>
@@ -54,13 +54,13 @@ export default function Resume() {
                 >
                   www.pavandivi.com
                 </Typography>
-              </Stack>
+              </Stack> */}
 
               <Stack alignItems="center" spacing={0.5} direction="row">
                 <Icon color="action" fontSize="small">
                   mail
                 </Icon>
-                <Typography variant="caption">
+                <Typography variant="caption" fontSize={14}>
                   pavan.divi@outlook.com
                 </Typography>
               </Stack>
@@ -69,13 +69,15 @@ export default function Resume() {
                 <Icon color="action" fontSize="small">
                   phone
                 </Icon>
-                <Typography variant="caption">+91-8885847537</Typography>
+                <Typography variant="caption" fontSize={14}>
+                  +91-8885847537
+                </Typography>
               </Stack>
-            </Box>
+            </Stack>
             <Stack direction="row">
               <IconButton
                 edge="start"
-                size="small"
+                size={"14" as "small"}
                 href="https://www.linkedin.com/in/pavandv/"
               >
                 <LinkedInIcon />
@@ -83,7 +85,7 @@ export default function Resume() {
 
               <IconButton
                 edge="start"
-                size="small"
+                size={"14" as "small"}
                 href="https://twitter.com/pavan_divi"
               >
                 <TwitterIcon />
@@ -91,7 +93,7 @@ export default function Resume() {
 
               <IconButton
                 edge="start"
-                size="small"
+                size={"14" as "small"}
                 href="https://github.com/pavandv"
               >
                 <GithubIcon />
@@ -116,16 +118,17 @@ export default function Resume() {
 
         <Section>
           <PavanDiviIcon width={46} height={46} />
-          <Typography marginTop={-1} variant="h4" fontWeight="bold">
+          <Typography marginTop={0} variant="h5" fontWeight="bold">
             Pavan Divi
           </Typography>
           <Typography
             marginTop={0.5}
             color="primary"
-            variant="h6"
+            variant="subtitle2"
             fontWeight="bold"
           >
-            Staff Engineer | Full Stack, DevOps
+            Staff Engineer | Member of Module Federation Org | Full Stack,
+            DevOps
           </Typography>
         </Section>
       </Header>
@@ -144,51 +147,59 @@ export default function Resume() {
             </Article>
           </HGroup>
 
-          <HGroup title="Open Source Projects">
-            <Article title="Module Federation Typescript">
+          {/* <HGroup title="Open Source Projects">
+            <Article
+              title="Module Federation"
+              caption="Member of Module Federation Org"
+            >
               <Stack alignItems="center" spacing={0.3} direction="row">
-                <GithubIcon fill={theme.palette.primary.main} />
-                <Typography color="primary">/</Typography>
                 <Link
+                  sx={{
+                    alignItems: "center",
+                    display: "flex",
+                    gap: 0.5,
+                  }}
                   target="_blank"
                   rel="noopener"
                   underline="none"
                   variant="caption"
-                  href="https://github.com/module-federation/nextjs-mf/tree/main/packages/typescript"
+                  href="https://github.com/module-federation"
                 >
-                  module-federation/nextjs-mf
+                  <GithubIcon size={20} fill={theme.palette.primary.main} />
+                  <Typography color="primary">/</Typography>
+                  <Typography color="primary">Module Federation</Typography>
                 </Link>
               </Stack>
             </Article>
-          </HGroup>
+          </HGroup> */}
 
           <HGroup title="Skills">
-            <Article isTitlePrimary title="Design.">
+            <Article title="Design." enablePrimaryTitle>
               <Typography variant="body2">
                 Figma, Adobe XD, Sketch, Material Design, Mobile-first
                 Responsive web design.
               </Typography>
             </Article>
 
-            <Article isTitlePrimary title="Code.">
+            <Article title="Code." enablePrimaryTitle>
               <Article spacing={0} title="Frontend">
                 <Typography variant="body2">
-                  HTML, CSS, ES6, Typescript, Javascript, ReactJs, NextJs,
-                  AngularJS, Redux.
+                  React Js, Remix, Next Js, Angular, Typescript, Redux, HTML,
+                  CSS3, SCSS, ES6.
                 </Typography>
               </Article>
 
               <Article spacing={1} title="Backend">
                 <Typography variant="body2">
-                  NodeJs, ExpressJs, gRPC, GraphQL, .Net Core, .Net, HTTP, REST
-                  API.
+                  Node.js, Java, Rust, gRPC, GraphQL, .Net Core, .Net, HTTP,
+                  REST API.
                 </Typography>
               </Article>
 
               <Article spacing={1} title="Data">
                 <Typography variant="body2">
                   DynamoDB, Azure Storage (Table, Blob & Queue), Cosmos DB,
-                  MSSQL
+                  MSSQL, Postgres
                 </Typography>
               </Article>
 
@@ -199,7 +210,12 @@ export default function Resume() {
               </Article>
             </Article>
 
-            <Article isTitlePrimary title="Deploy.">
+            <Article title="Deploy." enablePrimaryTitle>
+              <Article spacing={1} title="CI / CD Tools">
+                <Typography>
+                  Jenkins, Github Actions, Azure pipelines, Bamboo
+                </Typography>
+              </Article>
               <Article spacing={1} title="Cloud computing">
                 <Typography>Azure, AWS, GCP</Typography>
               </Article>
@@ -222,12 +238,64 @@ export default function Resume() {
               reliability & efficiency.
             </Typography>
           </HGroup>
-          <HGroup title="Work Experience">
+          <HGroup title="Open Source Projects">
             <ArticleWithSubheading
               spacing={1}
+              title="Module Federation"
+              subheading="Member of the Org"
+            >
+              <Stack spacing={2}>
+                <Typography>
+                  Created & Open sourced a Webpack Plugin, which enables
+                  Typescript Type support for Module Federated Components.
+                </Typography>
+                <Typography>Links:</Typography>
+                <Stack flexDirection="row" gap={7}>
+                  <Link
+                    sx={{
+                      alignItems: "center",
+                      display: "flex",
+                      gap: 0.5,
+                    }}
+                    target="_blank"
+                    rel="noopener"
+                    underline="none"
+                    variant="caption"
+                    href="https://github.com/module-federation"
+                  >
+                    <GithubIcon size={20} fill={theme.palette.primary.main} />
+                    <Typography color="primary">/</Typography>
+                    <Typography color="primary">module-federation</Typography>
+                  </Link>
+                  <Link
+                    sx={{
+                      alignItems: "center",
+                      display: "flex",
+                      gap: 0.5,
+                    }}
+                    target="_blank"
+                    rel="noopener"
+                    underline="none"
+                    variant="caption"
+                    href="https://github.com/module-federation/universe/tree/main/packages/typescript"
+                  >
+                    <GithubIcon size={20} fill={theme.palette.primary.main} />
+                    <Typography color="primary">/</Typography>
+                    <Typography color="primary">typescript</Typography>
+                  </Link>
+                </Stack>
+              </Stack>
+            </ArticleWithSubheading>
+          </HGroup>
+          <HGroup title="Work Experience">
+            <ArticleWithSubheading
               title="Altimetrik"
               subheading="Staff engineer"
-              caption="Dec 2021 - Present"
+              caption={
+                <>
+                  <b>Client - Citi Bank</b> | Dec 2021 - Present"
+                </>
+              }
             >
               <RMPList dense>
                 <RMPListItem disableGutters>
@@ -236,11 +304,23 @@ export default function Resume() {
                   maximum availability and scalability.
                 </RMPListItem>
                 <RMPListItem disableGutters>
-                  Responsible for providing new Micro Frontends Architecture
-                  using Module Federation.
+                  Significantly improved
+                  <b> application performance to approx. 40%</b> by migrating
+                  existing MFE Architecture to new Architecture using{" "}
+                  <b>Module Federation.</b>
                 </RMPListItem>
                 <RMPListItem disableGutters>
-                  Sharing common vendor and feature code between multiple apps.
+                  Implemented various techniques to <b>improve performance </b>
+                  like{" "}
+                  <b>
+                    lazy loading resources, reduce bundle sizes, use singleton
+                    modules for Redux, i18n etc.,
+                  </b>
+                </RMPListItem>
+                <RMPListItem disableGutters>
+                  Sharing common vendor and feature code between multiple apps
+                  as a <b>federated library</b> instead of using traditional
+                  approaches like <b>NPM modules.</b>
                 </RMPListItem>
                 <RMPListItem disableGutters>
                   Micro frontends which operate like monoliths, at runtime.
@@ -258,33 +338,33 @@ export default function Resume() {
                   backend engineers across different multiple teams.
                 </RMPListItem>
                 <RMPListItem disableGutters>
-                  Creating design, documents and action plans.
+                  Creating clear, comprehensive technical design documents,
+                  writing clean, optimized, and reusable code
                 </RMPListItem>
               </RMPList>
             </ArticleWithSubheading>
 
             <ArticleWithSubheading
-              spacing={1}
               title="CDK Global"
               subheading="Senior software engineer"
               caption="July 2015 - Dec 2021"
             >
               <RMPList dense>
                 <RMPListItem disableGutters>
-                  Proposed and implemented Module federation driven Architecture
-                  for large scale micro frontend.
+                  Proposed and implemented <b>Module federation</b> driven
+                  Architecture for large scale micro frontend.
                 </RMPListItem>
                 <RMPListItem disableGutters>
                   Designing & Developing UI Design system using ATOMIC design
                   methodology that follow Material Design.
                 </RMPListItem>
                 <RMPListItem disableGutters>
-                  Developed 10+ project from scratch providing UI architecture
-                  for most of the projects.
+                  Developed <b>10+ project from scratch</b> providing{" "}
+                  <b>UI architecture</b> for most of the projects.
                 </RMPListItem>
                 <RMPListItem disableGutters>
-                  Worked on an Identity Provider project powered by Okta
-                  deployed to AWS lambda.
+                  Worked on an implementing Identity and Access Management (IAM)
+                  system using <b>OAuth & OpenID specifications.</b>
                 </RMPListItem>
                 <RMPListItem disableGutters>
                   Implementing End-to-End testing using Cypress, which also led
@@ -293,6 +373,9 @@ export default function Resume() {
                 <RMPListItem disableGutters>
                   Collaborating with product, owners, designers, front end and
                   backend engineers across different multiple teams.
+                </RMPListItem>
+                <RMPListItem disableGutters>
+                  Creating design, documents and action plans.
                 </RMPListItem>
               </RMPList>
             </ArticleWithSubheading>
